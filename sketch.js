@@ -136,13 +136,23 @@ function setup() {
   createCanvas(960, 640);
   gameState = 0;
 }
-function drawTable() {
-  fill(0, 153, 0);
-  ellipse(500, 500, 5000, 5000);
-  fill(161, 102, 47);
-  ellipse(1000, 500, 1000, 500);
-  fill(0, 153, 0);
-  ellipse(1000, 500, 800, 400);
+function drawTable(){
+	fill(0,153,0)
+	rect(0,0,960,640)
+    strokeWeight(0)
+	fill(161, 102, 47)
+	ellipse(480,120,800,750)
+	fill(0,153,0)
+	ellipse(480,120,700,650)
+	strokeWeight(0)
+	fill(0,153,0)
+	rect(0,0,960,120)
+    strokeWeight(0)
+	fill(161, 102, 47)
+	rect(80,80,800,50,20)
+    rect(80,110,20,20)
+    rect(860,110,20,20)
+    strokeWeight(1)
 }
 
 function rateSelf() {
