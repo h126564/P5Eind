@@ -145,23 +145,31 @@ function setup() {
   gameState = 0;
   playerObject = new Person();
 }
-function drawTable() {
-  fill(0, 153, 0);
-  rect(0, 0, 960, 640);
-  strokeWeight(0);
-  fill(161, 102, 47);
-  ellipse(480, 120, 800, 750);
-  fill(0, 153, 0);
-  ellipse(480, 120, 700, 650);
-  strokeWeight(0);
-  fill(0, 153, 0);
-  rect(0, 0, 960, 120);
-  strokeWeight(0);
-  fill(161, 102, 47);
-  rect(80, 80, 800, 50, 20);
-  rect(80, 110, 20, 20);
-  rect(860, 110, 20, 20);
-  strokeWeight(1);
+function drawTable(){
+  stroke('black')
+	fill(34,49,29)            //achtergrond donker groen
+	rect(0,0,960,640)
+	fill(161, 102, 47)        //bruine rand
+	strokeWeight(1)
+	ellipse(480,120,1200,900)
+	fill(0,153,0)             //groene binnencirkel
+	ellipse(480,120,1150,850)
+    strokeWeight(1)
+  fill(0,153,0)
+  stroke('white')
+  rect(443,410,74,100) //midden
+
+  push()
+  translate(120,300)
+  rotate(QUARTER_PI/2+0.2)
+  rect(0,0,74,100)
+  pop()
+  
+  push()
+  translate(780,340)
+  rotate(-QUARTER_PI/2-0.2)
+  rect(0,0,74,100)
+  pop()
 }
 
 function rateSelf() {
