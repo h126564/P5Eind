@@ -1,11 +1,11 @@
 class Person {
   // Constructor to initialize the properties
   constructor() {
-    this.age = age; // Age of the person
-    this.ageDifferenceWithPartner = ageDifferenceWithPartner; // Age difference with their partner
-    this.health = health; // Health status (could be a string or numerical value)
-    this.timeForHobbies = timeForHobbies; // Time allocated for hobbies (e.g., in hours per week)
-    this.petImportance = petImportance; // Importance of pets (e.g., scale from 1 to 10)
+    this.age = -1; // Age of the person
+    this.ageDifferenceWithPartner = -1; // Age difference with their partner
+    this.health = -1; // Health status (could be a string or numerical value)
+    this.timeForHobbies = -1; // Time allocated for hobbies (e.g., in hours per week)
+    this.petImportance = -1; // Importance of pets (e.g., scale from 1 to 10)
   }
 }
 //1-13 hearts
@@ -222,6 +222,8 @@ function draw() {
   } else if (gameState == 1) {
     background(0);
     readyToDraw();
+  }else if(gameState ==2){
+
   }
 }
 
