@@ -1,3 +1,13 @@
+class Person {
+  // Constructor to initialize the properties
+  constructor() {
+    this.age = age; // Age of the person
+    this.ageDifferenceWithPartner = ageDifferenceWithPartner; // Age difference with their partner
+    this.health = health; // Health status (could be a string or numerical value)
+    this.timeForHobbies = timeForHobbies; // Time allocated for hobbies (e.g., in hours per week)
+    this.petImportance = petImportance; // Importance of pets (e.g., scale from 1 to 10)
+  }
+}
 //1-13 hearts
 //14-26 diamonds
 //27-39 spades
@@ -12,6 +22,7 @@ let buttonX, buttonY, buttonWidth, buttonHeight;
 let isHovered = false;
 let isClicked = false;
 let gameState;
+let playerObject;
 // Define card suits and their colors
 const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
 const suitColors = ["#FF0000", "#FF0000", "#000000", "#000000"]; // Hearts & Diamonds: Red, Clubs & Spades: Black
@@ -23,8 +34,8 @@ const horizontalSpacing = 70;
 const verticalSpacing = 120;
 
 // Starting position for the first card
-let startX = 50;
-let startY = 50;
+let startX = 225;
+let startY = 100;
 let chosenCards = [null, null, null, null];
 
 function drawTakeASeatButton() {
@@ -50,7 +61,6 @@ function drawTakeASeatButton() {
     takeASeatButtonY + takeASeatButtonHeight / 2
   );
 }
-
 
 // Function to return the suit symbol based on the suit name
 function getSuitSymbol(suit) {
@@ -80,8 +90,6 @@ function readyToDraw() {
   textAlign(CENTER, CENTER); // Center-align text
   noStroke(); // No border around shapes
 
-  
-
   // Check if the mouse is hovering over the button
   takeASeatButtonIsHovered =
     mouseX > takeASeatButtonX &&
@@ -96,7 +104,7 @@ function readyToDraw() {
   if (takeASeatButtonIsClicked) {
     fill(255, 215, 0); // Gold color for the message
     textSize(48);
-    text("You've sat down at the table!", width / 2, height * 0.8);
+    gameState = 2;
   }
 }
 
@@ -135,24 +143,25 @@ function drawCard(x, y, width, height, value, suit, color) {
 function setup() {
   createCanvas(960, 640);
   gameState = 0;
+  playerObject = new Person();
 }
-function drawTable(){
-	fill(0,153,0)
-	rect(0,0,960,640)
-    strokeWeight(0)
-	fill(161, 102, 47)
-	ellipse(480,120,800,750)
-	fill(0,153,0)
-	ellipse(480,120,700,650)
-	strokeWeight(0)
-	fill(0,153,0)
-	rect(0,0,960,120)
-    strokeWeight(0)
-	fill(161, 102, 47)
-	rect(80,80,800,50,20)
-    rect(80,110,20,20)
-    rect(860,110,20,20)
-    strokeWeight(1)
+function drawTable() {
+  fill(0, 153, 0);
+  rect(0, 0, 960, 640);
+  strokeWeight(0);
+  fill(161, 102, 47);
+  ellipse(480, 120, 800, 750);
+  fill(0, 153, 0);
+  ellipse(480, 120, 700, 650);
+  strokeWeight(0);
+  fill(0, 153, 0);
+  rect(0, 0, 960, 120);
+  strokeWeight(0);
+  fill(161, 102, 47);
+  rect(80, 80, 800, 50, 20);
+  rect(80, 110, 20, 20);
+  rect(860, 110, 20, 20);
+  strokeWeight(1);
 }
 
 function rateSelf() {
@@ -174,6 +183,18 @@ function rateSelf() {
         suitColors[suitIndex]
       );
     }
+    text("How important is a", 110, 130);
+    text("similar age to you?", 110, 150);
+
+    text("How important is a", 110, 250);
+    text("a sporty life to you?", 110, 280);
+
+    text("How busy are you", 110, 370);
+    text("with your hobbies?", 110, 400);
+
+    text("How important are", 110, 490);
+    text("family and friends", 110, 520);
+    text("to you?", 110, 550);
   }
 }
 
@@ -213,6 +234,23 @@ function mouseClicked() {
         ) {
           console.log(`You clicked: ${cardValue} of ${suits[suitIndex]}`);
           chosenCards[suitIndex] = cardValue;
+          if (suitIndex == 0) {
+            playerObject.ageDifferenceWithPartner =cardValue;
+          }
+          if (suitIndex == 1) {
+            playerObject.health = cardValue;
+          }
+          if (suitIndex == 2) {
+            playerObject.timeForHobbies = cardValue;
+          }
+          if (suitIndex == 3) {
+            playerObject.petImportance = cardValue;
+          }
+          /*
+          this.health = health; // Health status (could be a string or numerical value)
+    this.timeForHobbies = timeForHobbies; // Time allocated for hobbies (e.g., in hours per week)
+    this.petImportance
+          */
           break; // Exit the inner loop once a card is clicked
         }
       }
