@@ -12,6 +12,7 @@ class Person {
 //14-26 diamonds
 //27-39 spades
 //40-52 clubs
+let CPU = null;
 let takeASeatButtonX,
   takeASeatButtonY,
   takeASeatButtonWidth,
@@ -140,6 +141,11 @@ function drawCard(x, y, width, height, value, suit, color) {
   text(suitSymbol, x + width / 2, y + (height * 2) / 3);
 }
 
+function playRound(){
+
+}
+
+
 function setup() {
   createCanvas(960, 640);
   gameState = 0;
@@ -211,7 +217,7 @@ function draw() {
     drawTable();
     rateSelf();
 
-    if (
+    if(
       chosenCards[0] != null &&
       chosenCards[1] != null &&
       chosenCards[2] != null &&
@@ -219,10 +225,20 @@ function draw() {
     ) {
       gameState = 1;
     }
-  } else if (gameState == 1) {
+  }if (gameState == 1) {
     background(0);
     readyToDraw();
-  }else if(gameState ==2){
+  }if(gameState ==2){
+    background(0)
+    drawTable();
+    CPU = new Player();
+    CPU.age = 18 + Math.random() * 52
+    CPU.ageDifferenceWithPartner = Math.random() * 10;
+    CPU.health = Math.random() * 10;
+    CPU.timeForHobbies = Math.random() * 10;
+    CPU.petImportance = Math.random() * 10;
+    gameState = 3;
+  }if(gameState == 3){
 
   }
 }
