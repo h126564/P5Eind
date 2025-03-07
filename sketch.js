@@ -239,7 +239,7 @@ function draw() {
     CPU.petImportance = Math.random() * 10;
     gameState = 3;
   }if(gameState == 3){
-
+    playRound()
   }
 }
 
