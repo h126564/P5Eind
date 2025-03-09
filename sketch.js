@@ -346,7 +346,9 @@ function draw() {
     matchCard = 0
     GetBaseCards();
   }if(gameState == 3){
-    
+    if(matchCard == 0){
+      //door de ingevulde vragen gaan en kijken hoe goed ze matchen
+    }
   }
 }
 
