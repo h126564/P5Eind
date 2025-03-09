@@ -1,3 +1,59 @@
+class SuitType {
+  static get HEARTS () {
+      return "Hearts";
+  }
+
+  static get DIAMONDS () {
+      return "Diamonds";
+  }
+
+  static get SPADES () {
+      return "Spades";
+  }
+
+  static get CLUBS () {
+    return "Clubs";
+  }
+
+  
+  
+}
+function getColorBySuit(suit){
+  if(suit == SuitType.CLUBS || suit == SuitType.SPADES){
+    return "#000000";
+  }else{
+    return "#FF0000"
+  }
+}
+function getRandomCard(){
+  let cardNr = Math.round(Math.random() * 51 +1);
+  let suit;
+  if(cardNr <= 13){
+    suit = SuitType.HEARTS;
+    cardNr = cardNr;
+  }else if (cardNr <= 26){
+    suit = SuitType.DIAMONDS;
+    cardNr = cardNr - 13;
+  }else if(cardNr <= 39){
+    suit = SuitType.SPADES;
+    cardNr = cardNr-26;;
+  }else {
+    suit = SuitType.CLUBS;
+    cardNr = cardNr-39;;
+  }
+  let card = new Card(suit, cardNr)
+  return card;
+    
+  }
+
+
+class Card{
+  constructor(suit, card){
+    this.suit = suit // kijk naar suit type ^
+    this.card = card //1 tot 13
+  }
+};
+
 class Person {
   // Constructor to initialize the properties
   constructor() {
@@ -24,6 +80,9 @@ let isHovered = false;
 let isClicked = false;
 let gameState;
 let playerObject;
+let dealerCards = []
+let playerCards = []
+let currentlyDrawnCards = [0]
 // Define card suits and their colors
 const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
 const suitColors = ["#FF0000", "#FF0000", "#000000", "#000000"]; // Hearts & Diamonds: Red, Clubs & Spades: Black
@@ -142,7 +201,16 @@ function drawCard(x, y, width, height, value, suit, color) {
 }
 
 function playRound(){
+    console.log(CPU)
 
+    if(dealerCards[0] == null || dealerCards.length ==0){
+        dealerCards[0] = getRandomCard();
+        dealerCards[1] = getRandomCard();
+        
+    }
+    if(playerCards[0]==null||playerCards.length ==0){
+
+    }
 }
 
 
@@ -211,7 +279,19 @@ function rateSelf() {
     text("to you?", 110, 550);
   }
 }
-
+function drawCardsOnTable(){
+  if(dealerCards[0] != null){
+    for(let i = 0; i < dealerCards.length; i++){
+      
+      let card = dealerCards[i]
+      drawCard(300 +i*50, 100,cardWidth,cardHeight,card.card, card.suit, getColorBySuit(card.suit))
+      if(gameState <6){
+         break;
+      }
+    }
+    
+  }
+}
 function draw() {
   if (gameState == 0) {
     drawTable();
@@ -228,18 +308,23 @@ function draw() {
   }if (gameState == 1) {
     background(0);
     readyToDraw();
-  }if(gameState ==2){
+  }if(gameState > 1){
     background(0)
     drawTable();
-    CPU = new Player();
-    CPU.age = 18 + Math.random() * 52
-    CPU.ageDifferenceWithPartner = Math.random() * 10;
-    CPU.health = Math.random() * 10;
-    CPU.timeForHobbies = Math.random() * 10;
-    CPU.petImportance = Math.random() * 10;
+    drawCardsOnTable();
+  }
+  
+  if(gameState ==2){
+    
+    CPU = new Person();
+    CPU.age = Math.round(18 + Math.random() * 25)
+    CPU.ageDifferenceWithPartner = Math.round(Math.random() * 10);
+    CPU.health = Math.round(Math.random() * 10);
+    CPU.timeForHobbies = Math.round(Math.random() * 10);
+    CPU.petImportance = Math.round(Math.random() * 10);
     gameState = 3;
   }if(gameState == 3){
-    playRound()
+    playRound();
   }
 }
 
