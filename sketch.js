@@ -80,6 +80,7 @@ let isHovered = false;
 let isClicked = false;
 let gameState;
 let playerObject;
+let matchCard = 0
 let dealerCards = []
 let playerCards = []
 let currentlyDrawnCards = [0]
@@ -200,17 +201,28 @@ function drawCard(x, y, width, height, value, suit, color) {
   text(suitSymbol, x + width / 2, y + (height * 2) / 3);
 }
 
-function playRound(){
+function GetBaseCards(){
     console.log(CPU)
 
     if(dealerCards[0] == null || dealerCards.length ==0){
         dealerCards[0] = getRandomCard();
         dealerCards[1] = getRandomCard();
-        
+        while(dealerCards[0].card ==1){
+          dealerCards[0] = getRandomCard();
+        }
+        while(dealerCards[1].card ==1){
+          dealerCards[1] = getRandomCard();
+        }
+        while(dealerCards[0] + dealerCards[1] == 20){
+          dealerCards[Math.round(Math.random())] = getRandomCard();
+        }
     }
     if(playerCards[0]==null||playerCards.length ==0){
-
+        playerCards[0] = getRandomCard();
+        playerCards[1] = getRandomCard();
+        
     }
+
 }
 
 
@@ -280,16 +292,23 @@ function rateSelf() {
   }
 }
 function drawCardsOnTable(){
-  if(dealerCards[0] != null){
+  if(dealerCards[0] != null&& dealerCards.length != 0){
     for(let i = 0; i < dealerCards.length; i++){
       
       let card = dealerCards[i]
-      drawCard(300 +i*50, 100,cardWidth,cardHeight,card.card, card.suit, getColorBySuit(card.suit))
+      drawCard(300 +i*80, 100,cardWidth,cardHeight,card.card, card.suit, getColorBySuit(card.suit))
       if(gameState <6){
          break;
       }
     }
     
+  }
+  if(playerCards[0] != null && playerCards.length != 0){
+    for(let i = 0; i < playerCards.length; i++){
+      
+      let card = playerCards[i]
+      drawCard(450 +i*44, 415,cardWidth,cardHeight,card.card, card.suit, getColorBySuit(card.suit))
+    }
   }
 }
 function draw() {
@@ -315,7 +334,8 @@ function draw() {
   }
   
   if(gameState ==2){
-    
+    playerCards = []
+    dealerCards = []
     CPU = new Person();
     CPU.age = Math.round(18 + Math.random() * 25)
     CPU.ageDifferenceWithPartner = Math.round(Math.random() * 10);
@@ -323,8 +343,10 @@ function draw() {
     CPU.timeForHobbies = Math.round(Math.random() * 10);
     CPU.petImportance = Math.round(Math.random() * 10);
     gameState = 3;
+    matchCard = 0
+    GetBaseCards();
   }if(gameState == 3){
-    playRound();
+    
   }
 }
 
@@ -371,5 +393,12 @@ function mouseClicked() {
     if (takeASeatButtonIsHovered) {
       takeASeatButtonIsClicked = true;
     }
+  }
+}
+
+
+function keyPressed() {
+  if (key === 'r') {
+    gameState = 2;
   }
 }
