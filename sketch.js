@@ -334,7 +334,7 @@ function draw() {
   }
   
   if(gameState ==2){
-    playerCards = []
+    
     dealerCards = []
     CPU = new Person();
     CPU.age = Math.round(18 + Math.random() * 25)
@@ -344,10 +344,15 @@ function draw() {
     CPU.petImportance = Math.round(Math.random() * 10);
     gameState = 3;
     matchCard = 0
+    playerCards = []
+    playerCards[0] = new Card(SuitType.HEARTS, Math.abs(CPU.ageDifferenceWithPartner - playerObject.ageDifferenceWithPartner) +4)
+    playerCards[1] = new Card(SuitType.DIAMONDS, Math.abs(CPU.health - playerObject.health)+4)
+
     GetBaseCards();
   }if(gameState == 3){
     if(matchCard == 0){
       //door de ingevulde vragen gaan en kijken hoe goed ze matchen
+      
     }
   }
 }
