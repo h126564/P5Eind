@@ -18,6 +18,11 @@ class SuitType {
   
   
 }
+
+let img;
+function preload() {
+  img = loadImage('thispersondoesnotexisttitled.png');
+}
 function getColorBySuit(suit){
   if(suit == SuitType.CLUBS || suit == SuitType.SPADES){
     return "#000000";
@@ -327,7 +332,7 @@ function draw() {
   }if (gameState == 1) {
     background(0);
     readyToDraw();
-  }if(gameState > 1){
+  }if(gameState > 1 && gameState < 7){
     background(0)
     drawTable();
     drawCardsOnTable();
@@ -354,6 +359,71 @@ function draw() {
       //door de ingevulde vragen gaan en kijken hoe goed ze matchen
       
     }
+  }
+  if(gameState ==9){
+    drawTable();
+    image(img, 150,200, 200,200)
+    fill(0)
+    textSize(50)
+    text("Berta, 27", 480, 230)
+    fill(255); // White background
+  stroke(0); // Black border
+  rectMode(CENTER);
+  textSize(16);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  
+  // First button at (200, 600)
+  rect(200, 600, 120, 50);
+  fill(0);
+  text("ALL IN", 200, 600);
+  fill(255);
+  
+  // Second button at (600, 600)
+  rect(600, 600, 140, 50);
+  fill(0);
+  text("GIVE UP HAND", 600, 600)
+
+  }
+  if(gameState == 10){
+      drawTable();
+      // Chat box styling
+  fill(255); // White background for the chat box
+  stroke(0); // Black border
+  strokeWeight(2); // Thicker border
+  rectMode(CORNER); // Default rectangle mode
+  textSize(16);
+  textAlign(LEFT, TOP); // Align text to the top-left corner
+  textStyle(NORMAL);
+
+  // Draw the chat box
+  let chatBoxX = 200; // 200px from the left
+  let chatBoxY = 200; // 200px from the top
+  let chatBoxWidth = 400;
+  let chatBoxHeight = 400;
+
+  rect(chatBoxX, chatBoxY, chatBoxWidth, chatBoxHeight);
+
+  // Add a title bar to the chat box
+  fill(0, 100, 200); // Blue color for the title bar
+  rect(chatBoxX, chatBoxY, chatBoxWidth, 30); // Title bar height = 30px
+
+  // Add text to the title bar
+  fill(255); // White text
+  noStroke();
+  text("Berta", chatBoxX + 10, chatBoxY + 5);
+
+  // Add some sample chat messages inside the box
+  fill(0); // Black text
+  text("No message has been sent yet", chatBoxX + 10, chatBoxY + 40);
+
+  // Add a simple input area at the bottom of the chat box
+  fill(240); // Light gray background for the input area
+  rect(chatBoxX, chatBoxY + chatBoxHeight - 40, chatBoxWidth, 40); // Input area height = 40px
+
+  // Add placeholder text in the input area
+  fill(150); // Gray text for placeholder
+  text("Type your message here...", chatBoxX + 10, chatBoxY + chatBoxHeight - 35);
   }
 }
 
@@ -407,5 +477,11 @@ function mouseClicked() {
 function keyPressed() {
   if (key === 'r') {
     gameState = 2;
+  }
+  if(key ==='n'){
+    gameState = 9;
+  }
+  if(key === 'm'){
+    gameState = 10;
   }
 }
