@@ -18,10 +18,12 @@ class SuitType {
   
   
 }
-
+let allowmusic = 0;
 let img;
+let music;
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
+  
 }
 function getColorBySuit(suit){
   if(suit == SuitType.CLUBS || suit == SuitType.SPADES){
@@ -68,6 +70,14 @@ class Person {
     this.timeForHobbies = -1; // Time allocated for hobbies (e.g., in hours per week)
     this.petImportance = -1; // Importance of pets (e.g., scale from 1 to 10)
   }
+}
+function musicPlay(){
+  if(allowmusic > 999){
+    
+  if(!music.isPlaying()){
+    music.play();
+  }
+}
 }
 //1-13 hearts
 //14-26 diamonds
@@ -235,6 +245,8 @@ function setup() {
   createCanvas(960, 640);
   gameState = 0;
   playerObject = new Person();
+  music = loadSound('lalala.mp3')
+
 }
 function drawTable(){
   stroke('black')
@@ -317,6 +329,12 @@ function drawCardsOnTable(){
   }
 }
 function draw() {
+  musicPlay();
+  if(allowmusic < 1000){
+    allowmusic++;
+    console.log(allowmusic)
+  }
+  
   if (gameState == 0) {
     drawTable();
     rateSelf();
@@ -371,7 +389,6 @@ function draw() {
   rectMode(CENTER);
   textSize(16);
   textAlign(CENTER, CENTER);
-  textStyle(BOLD);
   
   // First button at (200, 600)
   rect(200, 600, 120, 50);
@@ -383,7 +400,7 @@ function draw() {
   rect(600, 600, 140, 50);
   fill(0);
   text("GIVE UP HAND", 600, 600)
-
+  rectMode(CORNER);
   }
   if(gameState == 10){
       drawTable();
@@ -424,6 +441,7 @@ function draw() {
   // Add placeholder text in the input area
   fill(150); // Gray text for placeholder
   text("Type your message here...", chatBoxX + 10, chatBoxY + chatBoxHeight - 35);
+  
   }
 }
 
