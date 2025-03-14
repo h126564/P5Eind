@@ -21,8 +21,10 @@ class SuitType {
 let allowmusic = 0;
 let img;
 let music;
+let yay;
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
+  yay = loadSound('yay.mp3')
   
 }
 function getColorBySuit(suit){
@@ -314,9 +316,9 @@ function drawCardsOnTable(){
       
       let card = dealerCards[i]
       drawCard(300 +i*80, 100,cardWidth,cardHeight,card.card, card.suit, getColorBySuit(card.suit))
-      if(gameState <6){
+      /*if(gameState <6){
          break;
-      }
+      }*/
     }
     
   }
@@ -368,15 +370,32 @@ function draw() {
     gameState = 3;
     matchCard = 0
     playerCards = []
-    playerCards[0] = new Card(SuitType.HEARTS, Math.abs(CPU.ageDifferenceWithPartner - playerObject.ageDifferenceWithPartner) +4)
+    let agediff = Math.abs(CPU.age - playerObject.age)
+    agediffFactor = agediff/((10 -CPU.ageDifferenceWithPartner) +(10-playerObject.ageDifferenceWithPartner))
+    agediffFactor = 13- Math.floor(agediffFactor / 10) 
+    playerCards[0] = new Card(SuitType.HEARTS, agediffFactor)
+    if(playerCards[0].card == 14){
+      playerCards[0].card = 13
+    }
     playerCards[1] = new Card(SuitType.DIAMONDS, Math.abs(CPU.health - playerObject.health)+4)
 
     GetBaseCards();
   }if(gameState == 3){
-    if(matchCard == 0){
-      //door de ingevulde vragen gaan en kijken hoe goed ze matchen
-      
-    }
+    // Draw the "Hit" button
+  fill(0, 255, 0); // Green color
+  rect(100, 500, 100, 50); // x, y, width, height
+  fill(0); // Black text
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  text("Hit", 150, 525); // Centered text inside the "Hit" button
+
+  // Draw the "Stand" button
+  fill(255, 0, 0); // Red color
+  rect(250, 500, 100, 50); // x, y, width, height
+  fill(0); // Black text
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  text("Stand", 300, 525); // Centered text inside the "Stand" button
   }
   if(gameState ==9){
     drawTable();
@@ -404,6 +423,9 @@ function draw() {
   }
   if(gameState == 10){
       drawTable();
+      if(!yay.isPlaying()){
+        yay.play()
+      }
       // Chat box styling
   fill(255); // White background for the chat box
   stroke(0); // Black border
@@ -488,6 +510,18 @@ function mouseClicked() {
     if (takeASeatButtonIsHovered) {
       takeASeatButtonIsClicked = true;
     }
+  }else if(gameState ==3){
+    // Check if the "Hit" button is clicked
+  if (mouseX > 100 && mouseX < 200 && mouseY > 500 && mouseY < 550) {
+    console.log("Hit button pressed!");
+    playerCards[playerCards.length] = getRandomCard();
+  }
+
+  // Check if the "Stand" button is clicked
+  if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 550) {
+    gameState = 4;
+    // Add your "Stand" functionality here
+  }
   }
 }
 
