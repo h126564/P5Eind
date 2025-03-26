@@ -22,7 +22,11 @@ let allowmusic = 0;
 let img;
 let music;
 let yay;
+<<<<<<< HEAD
+let gamesPlayed = 0;
+=======
 let eenkaartje;
+>>>>>>> 039bea584fd90f9cb218a4738091f523b18c8b42
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
   yay = loadSound('yay.mp3')
@@ -398,6 +402,15 @@ function draw() {
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Stand", 300, 525); // Centered text inside the "Stand" button
+  }if(gameState==4){
+    let playerCardValue = 0;
+    for(let cardNr; cardNr < playerCards.length; cardNr++){
+      if(playerCards[cardNr].card >=10){
+        playerCardValue += 10
+      }else if(playerCards[cardNr].card == 1){
+        fill(0)
+      }
+    }
   }
   if(gameState ==9){
     drawTable();
