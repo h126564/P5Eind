@@ -22,9 +22,11 @@ let allowmusic = 0;
 let img;
 let music;
 let yay;
+let eenkaartje;
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
   yay = loadSound('yay.mp3')
+  eenkaartje = loadSound('card-sounds-35956.mp3')
   
 }
 function getColorBySuit(suit){
@@ -484,6 +486,7 @@ function mouseClicked() {
         ) {
           console.log(`You clicked: ${cardValue} of ${suits[suitIndex]}`);
           chosenCards[suitIndex] = cardValue;
+          
           if (suitIndex == 0) {
             playerObject.ageDifferenceWithPartner =cardValue;
           }
