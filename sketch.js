@@ -22,11 +22,8 @@ let allowmusic = 0;
 let img;
 let music;
 let yay;
-<<<<<<< HEAD
+let playerCardValue= 0;
 let gamesPlayed = 0;
-=======
-let eenkaartje;
->>>>>>> 039bea584fd90f9cb218a4738091f523b18c8b42
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
   yay = loadSound('yay.mp3')
@@ -244,6 +241,7 @@ function GetBaseCards(){
         playerCards[0] = getRandomCard();
         playerCards[1] = getRandomCard();
         
+        
     }
 
 }
@@ -340,7 +338,6 @@ function draw() {
   musicPlay();
   if(allowmusic < 1000){
     allowmusic++;
-    console.log(allowmusic)
   }
   
   if (gameState == 0) {
@@ -378,14 +375,17 @@ function draw() {
     playerCards = []
     let agediff = Math.abs(CPU.age - playerObject.age)
     agediffFactor = agediff/((10 -CPU.ageDifferenceWithPartner) +(10-playerObject.ageDifferenceWithPartner))
-    agediffFactor = 13- Math.floor(agediffFactor / 10) 
+    agediffFactor = 13- Math.floor(agediffFactor) 
+    GetBaseCards();
+    playerCards[0] = getRandomCard();
     playerCards[0] = new Card(SuitType.HEARTS, agediffFactor)
     if(playerCards[0].card == 14){
       playerCards[0].card = 13
     }
+    
     playerCards[1] = new Card(SuitType.DIAMONDS, Math.abs(CPU.health - playerObject.health)+4)
 
-    GetBaseCards();
+    
   }if(gameState == 3){
     // Draw the "Hit" button
   fill(0, 255, 0); // Green color
@@ -403,14 +403,8 @@ function draw() {
   textAlign(CENTER, CENTER);
   text("Stand", 300, 525); // Centered text inside the "Stand" button
   }if(gameState==4){
-    let playerCardValue = 0;
-    for(let cardNr; cardNr < playerCards.length; cardNr++){
-      if(playerCards[cardNr].card >=10){
-        playerCardValue += 10
-      }else if(playerCards[cardNr].card == 1){
-        fill(0)
-      }
-    }
+    
+    
   }
   if(gameState ==9){
     drawTable();
@@ -535,7 +529,35 @@ function mouseClicked() {
 
   // Check if the "Stand" button is clicked
   if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 550) {
-    gameState = 4;
+    console.log("skibidi")
+    playerCardValue = 0;
+    console.log("cards: "+playerCards.length)
+    for(let cardNr = 0; cardNr < playerCards.length; cardNr++){
+      console.log("ski")
+      if(playerCards[cardNr].card >=10){
+        playerCardValue += 10
+        console.log("added 10")
+      }else if(playerCards[cardNr].card != 1){
+        console.log("added number: " + playerCards[cardNr].card)
+        playerCardValue += playerCards[cardNr].card;
+      }else if(playerCards[cardNr].card == 1){
+        if(playerCardValue + 11 <22){
+          console.log("added 11")
+          playerCardValue += 11;
+        }else{
+          console.log("added 1")
+          playerCardValue++;
+        }
+      }
+    }
+      console.log(playerCardValue)
+    if(playerCardValue > 21){
+
+      gameState =2;
+      console.log("break")
+    }else{
+      gameState = 2;
+    }
     // Add your "Stand" functionality here
   }
   }
