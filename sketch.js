@@ -23,13 +23,22 @@ let img;
 let music;
 let yay;
 let playerCardValue= 0;
+let eenkaartje;
+let kaartenshuffle;
+let allin;
+let stand;
 let gamesPlayed = 0;
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
   yay = loadSound('yay.mp3')
   eenkaartje = loadSound('card-sounds-35956.mp3')
+  kaartenshuffle = loadSound('card-mixing-48088.mp3')
   
+  allin = loadSound('allinpushchips-96121.mp3')
+  stand = loadSound('nice-simple-knock-on-door-85867.mp3')
 }
+  
+
 function getColorBySuit(suit){
   if(suit == SuitType.CLUBS || suit == SuitType.SPADES){
     return "#000000";
@@ -186,6 +195,7 @@ function readyToDraw() {
     fill(255, 215, 0); // Gold color for the message
     textSize(48);
     gameState = 2;
+    kaartenshuffle.play()
   }
 }
 
@@ -493,7 +503,7 @@ function mouseClicked() {
         ) {
           console.log(`You clicked: ${cardValue} of ${suits[suitIndex]}`);
           chosenCards[suitIndex] = cardValue;
-          
+          eenkaartje.play()
           if (suitIndex == 0) {
             playerObject.ageDifferenceWithPartner =cardValue;
           }
@@ -525,6 +535,7 @@ function mouseClicked() {
   if (mouseX > 100 && mouseX < 200 && mouseY > 500 && mouseY < 550) {
     console.log("Hit button pressed!");
     playerCards[playerCards.length] = getRandomCard();
+    eenkaartje.play()
   }
 
   // Check if the "Stand" button is clicked
@@ -558,6 +569,7 @@ function mouseClicked() {
     }else{
       gameState = 2;
     }
+    stand.play()
     // Add your "Stand" functionality here
   }
   }
