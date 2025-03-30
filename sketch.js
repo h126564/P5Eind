@@ -261,7 +261,7 @@ function setup() {
   createCanvas(960, 640);
   gameState = 0;
   playerObject = new Person();
-  music = loadSound('lalala.mp3')
+  music = loadSound('lala.mp3')
 
 }
 function drawTable(){
