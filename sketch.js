@@ -462,8 +462,15 @@ function draw() {
   
   // Transition to result state (e.g., gameState 9)
    // Update to your desired result state
-  setTimeout(function(){
-    gameState = 9;
+  setTimeout(function(){   
+    if(gamesPlayed <4){
+      gameState = 2;
+      gamesPlayed++;
+    }else{
+      gameState = 9;
+    }
+    
+    
   }, 2000)
   console.log(resultMessage); // Replace with UI updates as needed
     
