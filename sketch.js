@@ -18,6 +18,7 @@ class SuitType {
   
   
 }
+let roundpassed = false;
 let allowmusic = 0;
 let img;
 let music;
@@ -395,7 +396,7 @@ function draw() {
   }
   
   if(gameState ==2){
-    
+    roundpassed = false;
     dealerCards = []
     CPU = new Person();
     CPU.age = Math.round(18 + Math.random() * 25)
@@ -462,16 +463,20 @@ function draw() {
   
   // Transition to result state (e.g., gameState 9)
    // Update to your desired result state
-  setTimeout(function(){   
-    if(gamesPlayed <4){
-      gameState = 2;
-      gamesPlayed++;
-    }else{
-      gameState = 9;
-    }
-    
-    
-  }, 2000)
+   if(!roundpassed){
+    setTimeout(function(){   
+      if(gamesPlayed <4){
+        gameState = 2;
+        gamesPlayed++;
+      }else{
+        gameState = 9;
+      }
+      
+      
+    }, 2000)
+    roundpassed=true;
+   }
+  
   console.log(resultMessage); // Replace with UI updates as needed
     
   }
