@@ -523,6 +523,7 @@ function draw() {
     fill(0)
     textSize(50)
     text("Berta, 27", 480, 230)
+    text(gamesWon + "/" +gamesPlayed + " match!", 480, 260)
     fill(255); // White background
   stroke(0); // Black border
   rectMode(CENTER);
@@ -578,7 +579,7 @@ text("PLAY AGAIN", 620, 400);
   fill(255); // White text
   noStroke();
   text("Berta", chatBoxX + 10, chatBoxY + 5);
-  text(gamesWon + "/" +gamesPlayed + " match!", chatBoxX + 10, chatBoxY + 25)
+  
 
   // Add some sample chat messages inside the box
   fill(0); // Black text
