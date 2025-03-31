@@ -402,23 +402,25 @@ function draw() {
     background(0)
     drawTable();
     drawCardsOnTable();
-  }
-  
-  if(gameState ==2){
-    roundpassed = false;
-    dealerCards = []
     CPU = new Person();
     CPU.age = Math.round(18 + Math.random() * 25)
     CPU.ageDifferenceWithPartner = Math.round(Math.random() * 10);
     CPU.health = Math.round(Math.random() * 10);
     CPU.timeForHobbies = Math.round(Math.random() * 10);
     CPU.petImportance = Math.round(Math.random() * 10);
-    gameState = 3;
-    matchCard = 0
-    playerCards = []
     let agediff = Math.abs(CPU.age - playerObject.age)
     agediffFactor = agediff/((10 -CPU.ageDifferenceWithPartner) +(10-playerObject.ageDifferenceWithPartner))
     agediffFactor = 13- Math.floor(agediffFactor) 
+  }
+  
+  if(gameState ==2){
+    roundpassed = false;
+    dealerCards = []
+    
+    gameState = 3;
+    matchCard = 0
+    playerCards = []
+    
     GetBaseCards();
     playerCards[0] = getRandomCard();
     playerCards[0] = new Card(SuitType.HEARTS, agediffFactor)
