@@ -414,6 +414,8 @@ function draw() {
     playerCards[0] = new Card(SuitType.HEARTS, agediffFactor)
     if(playerCards[0].card == 14){
       playerCards[0].card = 13
+    }else if(playerCards[0].card <1){
+      playerCards[0].card = Math.random*6 +1;
     }
     
     playerCards[1] = new Card(SuitType.DIAMONDS, Math.abs(CPU.health - playerObject.health)+4)
