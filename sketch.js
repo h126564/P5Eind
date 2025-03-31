@@ -547,6 +547,11 @@ function draw() {
         yayhasplayed = true;
       }
       // Chat box styling
+      // Play Again Button
+fill(0, 100, 0); // Green background
+rect(chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20, 120, 30);
+fill(255); // White text
+text("PLAY AGAIN", chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20);
   fill(255); // White background for the chat box
   stroke(0); // Black border
   strokeWeight(2); // Thicker border
@@ -655,6 +660,14 @@ function mouseClicked() {
     }
     // GIVE UP HAND button (600,600) - 140x50
     else if (mouseX > 530 && mouseX < 670 && mouseY > 575 && mouseY < 625) {
+      gameState = 1;
+    }
+  }else if (gameState === 10) {
+    // Play Again button hitbox
+    const buttonX = 200 + 400/2; // Center of chat box
+    const buttonY = 200 + 400 - 20; // 20px above bottom
+    if (mouseX > buttonX - 60 && mouseX < buttonX + 60 &&
+        mouseY > buttonY - 15 && mouseY < buttonY + 15) {
       gameState = 1;
     }
   }
