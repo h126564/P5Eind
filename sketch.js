@@ -23,6 +23,7 @@ let allowmusic = 0;
 let img;
 let music;
 let yay;
+let yayhasplayed = false;
 let playerCardValue= 0;
 let eenkaartje;
 let kaartenshuffle;
@@ -539,8 +540,9 @@ function draw() {
   }
   if(gameState == 10){
       drawTable();
-      if(!yay.isPlaying()){
+      if(!yay.isPlaying() && !yayhasplayed){
         yay.play()
+        yayhasplayed = true;
       }
       // Chat box styling
   fill(255); // White background for the chat box
@@ -625,6 +627,7 @@ function mouseClicked() {
   } else if (gameState === 1) {
     // Check if the button was clicked
     if (takeASeatButtonIsHovered) {
+      yayhasplayed = false;
       takeASeatButtonIsClicked = true;
     }
   }else if(gameState ==3){
