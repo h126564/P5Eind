@@ -117,7 +117,7 @@ class Person {
 function musicPlay(){
 
   if(allowmusic > 999){
-    music.setVolume(0.5)
+    music.setVolume(0.3)
   if(!music.isPlaying()){
     music.play();
   }
