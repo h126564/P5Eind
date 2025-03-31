@@ -563,11 +563,12 @@ function draw() {
   let chatBoxY = 200; // 200px from the top
   let chatBoxWidth = 400;
   let chatBoxHeight = 400;
-  fill(0, 100, 0); // Green background
-  rect(chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20, 120, 30);
-  fill(255); // White text
-  text("PLAY AGAIN", chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20);
-  rect(chatBoxX, chatBoxY, chatBoxWidth, chatBoxHeight);
+
+// Play Again Button (right of chatbox)
+fill(0, 100, 0); // Green background
+rect(620, 400, 120, 30); // Moved to right of chatbox
+fill(255); // White text
+text("PLAY AGAIN", 620, 400);
 
   // Add a title bar to the chat box
   fill(0, 100, 200); // Blue color for the title bar
@@ -664,12 +665,11 @@ function mouseClicked() {
       gameState = 1;
     }
   }else if (gameState === 10) {
-    // Play Again button hitbox
-    const buttonX = 200 + 400/2; // Center of chat box
-    const buttonY = 200 + 400 - 20; // 20px above bottom
-    if (mouseX > buttonX - 60 && mouseX < buttonX + 60 &&
-        mouseY > buttonY - 15 && mouseY < buttonY + 15) {
-      gameState = 1;
+    if (gameState === 10) {
+      // Play Again button hitbox (right-aligned)
+      if (mouseX > 560 && mouseX < 680 && mouseY > 385 && mouseY < 415) {
+        gameState = 1;
+      }
     }
   }
 }
