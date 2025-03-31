@@ -459,7 +459,10 @@ function draw() {
   }
   
   // Transition to result state (e.g., gameState 9)
-  gameState = 9; // Update to your desired result state
+   // Update to your desired result state
+  setTimeout(function(){
+    gameState = 9;
+  }, 2000)
   console.log(resultMessage); // Replace with UI updates as needed
     
   }
