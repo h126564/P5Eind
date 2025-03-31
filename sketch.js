@@ -29,6 +29,8 @@ let kaartenshuffle;
 let allin;
 let stand;
 let gamesPlayed = 0;
+let win;
+let lose;
 
 function calculateHandValue(cards) {
   let total = 0;
@@ -60,6 +62,8 @@ function preload() {
   
   allin = loadSound('allinpushchips-96121.mp3')
   stand = loadSound('nice-simple-knock-on-door-85867.mp3')
+  win = loadSound('win.mp3')
+  lose = loadSound('lose.mp3')
 }
   
 
@@ -453,10 +457,13 @@ function draw() {
   
   if (dealerTotal > 21) {
     resultMessage = "Dealer busts! You win!";
+    win.play();
   } else if (playerTotal > dealerTotal) {
     resultMessage = "You win!";
+    win.play();
   } else if (playerTotal < dealerTotal) {
     resultMessage = "Dealer wins!";
+    lose.play();
   } else {
     resultMessage = "It's a tie!";
   }
