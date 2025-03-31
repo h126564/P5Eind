@@ -563,7 +563,7 @@ function draw() {
   let chatBoxY = 200; // 200px from the top
   let chatBoxWidth = 400;
   let chatBoxHeight = 400;
-
+  rect(chatBoxX, chatBoxY, chatBoxWidth, chatBoxHeight)
 // Play Again Button (right of chatbox)
 fill(0, 100, 0); // Green background
 rect(620, 400, 120, 30); // Moved to right of chatbox
