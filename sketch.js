@@ -645,6 +645,16 @@ function mouseClicked() {
     
     // Add your "Stand" functionality here
   }
+  }else if (gameState === 9) {
+    // ALL IN button (200,600) - 120x50
+    if (mouseX > 140 && mouseX < 260 && mouseY > 575 && mouseY < 625) {
+      allin.play(); // Play sound effect
+      gameState = 10;
+    }
+    // GIVE UP HAND button (600,600) - 140x50
+    else if (mouseX > 530 && mouseX < 670 && mouseY > 575 && mouseY < 625) {
+      gameState = 1;
+    }
   }
 }
 
