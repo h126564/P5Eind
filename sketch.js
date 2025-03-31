@@ -28,6 +28,29 @@ let kaartenshuffle;
 let allin;
 let stand;
 let gamesPlayed = 0;
+
+function calculateHandValue(cards) {
+  let total = 0;
+  let aces = 0;
+  for (let card of cards) {
+    let value = card.card;
+    if (value >= 10) {
+      total += 10;
+    } else if (value === 1) {
+      total += 11;
+      aces++;
+    } else {
+      total += value;
+    }
+  }
+  // Adjust for Aces if total exceeds 21
+  while (total > 21 && aces > 0) {
+    total -= 10;
+    aces--;
+  }
+  return total;
+}
+
 function preload() {
   img = loadImage('thispersondoesnotexisttitled.png');
   yay = loadSound('yay.mp3')
@@ -412,8 +435,32 @@ function draw() {
   textSize(20);
   textAlign(CENTER, CENTER);
   text("Stand", 300, 525); // Centered text inside the "Stand" button
-  }if(gameState==4){
-    
+  }if(gameState == 4){
+    let dealerTotal = calculateHandValue(dealerCards);
+  
+  // Dealer draws until total > 16
+  while (dealerTotal <= 16) {
+    dealerCards.push(getRandomCard());
+    dealerTotal = calculateHandValue(dealerCards);
+  }
+  
+  // Compare hands and determine outcome
+  let playerTotal = calculateHandValue(playerCards);
+  let resultMessage;
+  
+  if (dealerTotal > 21) {
+    resultMessage = "Dealer busts! You win!";
+  } else if (playerTotal > dealerTotal) {
+    resultMessage = "You win!";
+  } else if (playerTotal < dealerTotal) {
+    resultMessage = "Dealer wins!";
+  } else {
+    resultMessage = "It's a tie!";
+  }
+  
+  // Transition to result state (e.g., gameState 9)
+  gameState = 9; // Update to your desired result state
+  console.log(resultMessage); // Replace with UI updates as needed
     
   }
   if(gameState ==9){
@@ -540,7 +587,30 @@ function mouseClicked() {
 
   // Check if the "Stand" button is clicked
   if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 550) {
-    console.log("skibidi")
+    stand.play()
+    gameState=4;
+    
+    // Add your "Stand" functionality here
+  }
+  }
+}
+
+
+function keyPressed() {
+  if (key === 'r') {
+    gameState = 2;
+  }
+  if(key ==='n'){
+    gameState = 9;
+  }
+  if(key === 'm'){
+    gameState = 10;
+  }
+}
+
+/*
+
+console.log("skibidi")
     playerCardValue = 0;
     console.log("cards: "+playerCards.length)
     for(let cardNr = 0; cardNr < playerCards.length; cardNr++){
@@ -569,21 +639,5 @@ function mouseClicked() {
     }else{
       gameState = 2;
     }
-    stand.play()
-    // Add your "Stand" functionality here
-  }
-  }
-}
 
-
-function keyPressed() {
-  if (key === 'r') {
-    gameState = 2;
-  }
-  if(key ==='n'){
-    gameState = 9;
-  }
-  if(key === 'm'){
-    gameState = 10;
-  }
-}
+    */
