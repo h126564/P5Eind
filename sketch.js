@@ -457,13 +457,20 @@ function draw() {
   
   if (dealerTotal > 21) {
     resultMessage = "Dealer busts! You win!";
-    win.play();
+    if(!roundpassed){
+      win.play();
+    }
   } else if (playerTotal > dealerTotal) {
     resultMessage = "You win!";
-    win.play();
+    if(!roundpassed){
+      win.play();
+    }
   } else if (playerTotal < dealerTotal) {
     resultMessage = "Dealer wins!";
-    lose.play();
+    if(!roundpassed){
+      lose.play();
+    }
+    
   } else {
     resultMessage = "It's a tie!";
   }
