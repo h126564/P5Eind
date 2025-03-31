@@ -458,17 +458,24 @@ function draw() {
   if (dealerTotal > 21) {
     resultMessage = "Dealer busts! You win!";
     if(!roundpassed){
-      win.play();
+      setTimeout(function(){   
+        win.play();
+      }, 800)
     }
   } else if (playerTotal > dealerTotal) {
     resultMessage = "You win!";
     if(!roundpassed){
-      win.play();
+      setTimeout(function(){   
+        win.play();
+      }, 800)
     }
   } else if (playerTotal < dealerTotal) {
     resultMessage = "Dealer wins!";
+    
     if(!roundpassed){
-      lose.play();
+      setTimeout(function(){   
+        lose.play();
+      }, 800)
     }
     
   } else {
