@@ -469,9 +469,11 @@ function draw() {
       }, 800)
     }
   }else if(playerTotal > dealerTotal){
+    if(!roundpassed){
     setTimeout(function(){   
       lose.play();
     }, 800)
+  }
   }else if (playerTotal > dealerTotal) {
     resultMessage = "You win!";
     if(!roundpassed){
