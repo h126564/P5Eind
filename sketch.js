@@ -525,7 +525,7 @@ function draw() {
     fill(0)
     textSize(50)
     text("Berta, 27", 480, 230)
-    text(gamesWon + "/" +gamesPlayed + " match!", 480, 260)
+    text(gamesWon + "/" +gamesPlayed + " match!", 480, 285)
     fill(255); // White background
   stroke(0); // Black border
   rectMode(CENTER);
