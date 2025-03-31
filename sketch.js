@@ -29,6 +29,7 @@ let kaartenshuffle;
 let allin;
 let stand;
 let gamesPlayed = 0;
+let gamesWon = 0;
 let win;
 let lose;
 
@@ -393,6 +394,8 @@ function draw() {
   }if (gameState == 1) {
     background(0);
     readyToDraw();
+    gamesPlayed = 0;
+    gamesWon = 0;
   }if(gameState > 1 && gameState < 7){
     background(0)
     drawTable();
@@ -458,6 +461,7 @@ function draw() {
   if (dealerTotal > 21) {
     resultMessage = "Dealer busts! You win!";
     if(!roundpassed){
+      gamesWon++;
       setTimeout(function(){   
         win.play();
       }, 800)
@@ -465,6 +469,7 @@ function draw() {
   } else if (playerTotal > dealerTotal) {
     resultMessage = "You win!";
     if(!roundpassed){
+      gamesWon++;
       setTimeout(function(){   
         win.play();
       }, 800)
@@ -485,10 +490,11 @@ function draw() {
   // Transition to result state (e.g., gameState 9)
    // Update to your desired result state
    if(!roundpassed){
+    gamesPlayed++;
     setTimeout(function(){   
-      if(gamesPlayed <4){
+      if(gamesPlayed <5){
         gameState = 2;
-        gamesPlayed++;
+        
       }else{
         gameState = 9;
       }
@@ -502,6 +508,7 @@ function draw() {
     
   }
   if(gameState ==9){
+    console.log(gamesWon + "/" + gamesPlayed)
     drawTable();
     image(img, 150,200, 200,200)
     fill(0)
