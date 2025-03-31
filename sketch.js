@@ -493,6 +493,7 @@ function draw() {
     
   } else {
     resultMessage = "It's a tie!";
+    gamesPlayed--;
   }
   
   // Transition to result state (e.g., gameState 9)
