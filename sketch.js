@@ -414,6 +414,7 @@ function draw() {
   }
   
   if(gameState ==2){
+    console.log(gamesPlayed)
     roundpassed = false;
     dealerCards = []
     
