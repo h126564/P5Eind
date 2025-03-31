@@ -548,10 +548,7 @@ function draw() {
       }
       // Chat box styling
       // Play Again Button
-fill(0, 100, 0); // Green background
-rect(chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20, 120, 30);
-fill(255); // White text
-text("PLAY AGAIN", chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20);
+
   fill(255); // White background for the chat box
   stroke(0); // Black border
   strokeWeight(2); // Thicker border
@@ -565,7 +562,10 @@ text("PLAY AGAIN", chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20);
   let chatBoxY = 200; // 200px from the top
   let chatBoxWidth = 400;
   let chatBoxHeight = 400;
-
+  fill(0, 100, 0); // Green background
+  rect(chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20, 120, 30);
+  fill(255); // White text
+  text("PLAY AGAIN", chatBoxX + chatBoxWidth/2, chatBoxY + chatBoxHeight - 20);
   rect(chatBoxX, chatBoxY, chatBoxWidth, chatBoxHeight);
 
   // Add a title bar to the chat box
